@@ -121,8 +121,8 @@ bool send_magic_command(hid_device *dev, const uint32_t *command)
     unsigned char buf[65];
 
     clear_buffer(buf, sizeof(buf));
-    write_buffer_32(buf,command[0]);
-    write_buffer_32(buf + sizeof(uint32_t),command[1]);
+    write_buffer_32(buf + 1,command[0]);
+    write_buffer_32(buf + 1 + sizeof(uint32_t),command[1]);
     if(!hid_set_feature(dev,buf, sizeof(buf))) return false;
     clear_buffer(buf, sizeof(buf));
     return true;
